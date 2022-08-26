@@ -23,7 +23,7 @@ class YaUploader:
 
 if __name__ == '__main__':
     # Получить путь к загружаемому файлу и токен от пользователя
-    path_to_file = '/Users/aloster/PycharmProjects/hw_1_8/test.txt'
-    token = ''
+    path_to_file = input('Вставьте полный путь до файла: ')
+    token = input('Введите Ваш токен: ')
     uploader = YaUploader(token)
     result = uploader.upload(path_to_file)
