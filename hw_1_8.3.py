@@ -20,24 +20,17 @@ def result():
     tag = 'python'
     j = 1
     while True:
-        queues = parse_stack(int(from_date(period)), tag, j)
-        if len(queues.json()['items']) > 0:
-            for i in queues.json()['items']:
-                print(f'Дата вопроса {time.strftime("%d-%m-%Y %H:%M:%S", time.localtime(i["creation_date"]))} '
-                        f'Вопрос: {i["title"]}')
-            j += 1
-        else:
+        try:
+            queues = parse_stack(int(from_date(period)), tag, j)
+            if len(queues.json()['items']) > 0:
+                for i in queues.json()['items']:
+                    print(f'Дата вопроса {time.strftime("%d-%m-%Y %H:%M:%S", time.localtime(i["creation_date"]))} '
+                          f'Вопрос: {i["title"]}')
+                j += 1
+            else:
+                break
+        except:
             break
-
-        # try:
-        #     queues = parse_stack(int(fromdate(period)), tag, j)
-        #     print(queues.status_code)
-        #     for i in queues.json()['items']:
-        #         print(f'Дата вопроса {time.strftime("%d-%m-%Y %H:%M:%S", time.localtime(i["creation_date"]))} '
-        #               f'Вопрос: {i["title"]}')
-        #     j += 1
-        # except:
-        #     break
 
 
 result()
