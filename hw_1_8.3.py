@@ -9,7 +9,7 @@ def parse_stack(fromdate, tagged, page):
     return response
 
 
-def fromdate(period):
+def from_date(period):
     real_time = time.time()
     res = real_time - period * 24 * 3600
     return res
@@ -20,18 +20,24 @@ def result():
     tag = 'python'
     j = 1
     while True:
-        try:
-            queues = parse_stack(int(fromdate(period)), tag, j)
-            print(queues.status_code)
-            # if queues.status_code == 200:
+        queues = parse_stack(int(from_date(period)), tag, j)
+        if len(queues.json()['items']) > 0:
             for i in queues.json()['items']:
                 print(f'Дата вопроса {time.strftime("%d-%m-%Y %H:%M:%S", time.localtime(i["creation_date"]))} '
-                      f'Вопрос: {i["title"]}')
-            # else:
-            #     break
+                        f'Вопрос: {i["title"]}')
             j += 1
-        except:
+        else:
             break
+
+        # try:
+        #     queues = parse_stack(int(fromdate(period)), tag, j)
+        #     print(queues.status_code)
+        #     for i in queues.json()['items']:
+        #         print(f'Дата вопроса {time.strftime("%d-%m-%Y %H:%M:%S", time.localtime(i["creation_date"]))} '
+        #               f'Вопрос: {i["title"]}')
+        #     j += 1
+        # except:
+        #     break
 
 
 result()
