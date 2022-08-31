@@ -3,7 +3,7 @@ import time
 
 
 def parse_stack(fromdate, tagged, page):
-    url = f'https://api.stackexchange.com//2.3/questions?page={page}&fromdate={fromdate}&order=desc&pagesize=100&' \
+    url = f'https://api.stackexchange.com/2.3/questions?page={page}&fromdate={fromdate}&order=desc&pagesize=100&' \
           f'sort=creation&tagged={tagged}&site=stackoverflow'
     response = requests.get(url)
     return response
