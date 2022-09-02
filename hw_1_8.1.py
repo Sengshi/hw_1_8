@@ -9,6 +9,4 @@ for hero in heroes:
     for parametrs in response:
         if hero == parametrs['name']:
             int_hero[parametrs['name']] = parametrs['powerstats']['intelligence']
-for k, v in int_hero.items():
-    if v == max(int_hero.values()):
-        print(f'Умнейший персонаж комиксов: {k}')
+print(f'Умнейший персонаж комиксов: {max(int_hero, key=int_hero.get)}')
