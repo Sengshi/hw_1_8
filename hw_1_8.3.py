@@ -29,7 +29,7 @@ def result():
                 j += 1
             else:
                 break
-        except:
+        except KeyError:
             break
 
 
