@@ -26,4 +26,4 @@ if __name__ == '__main__':
     path_to_file = input('Вставьте полный путь до файла: ')
     token = input('Введите Ваш токен: ')
     uploader = YaUploader(token)
-    result = uploader.upload(path_to_file)
+    uploader.upload(path_to_file)
