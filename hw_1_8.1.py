@@ -11,4 +11,6 @@ for hero in heroes:
         if hero == parametrs['name']:
             int_hero[parametrs['name']] = parametrs['powerstats']['intelligence']
             break
-print(f'Умнейший персонаж комиксов: {max(int_hero)}')
+for k, v in int_hero.items():
+    if v == max(int_hero.values()):
+        print(f'Умнейший персонаж комиксов: {k}')
