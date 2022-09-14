@@ -1,5 +1,5 @@
 import requests
-import time
+import datetime
 
 
 def parse_stack(fromdate, tagged, page):
@@ -10,27 +10,31 @@ def parse_stack(fromdate, tagged, page):
 
 
 def from_date(period):
-    real_time = time.time()
-    res = real_time - period * 24 * 3600
-    return res
+    today = datetime.datetime.now()
+    day_ago = datetime.timedelta(days=period)
+    res = today.combine(today.date(), today.min.time()) - day_ago
+    return res.date()
 
 
 def result():
     period = 2
     tag = 'python'
     j = 1
+    all_questions = []
     while True:
         try:
-            queues = parse_stack(int(from_date(period)), tag, j)
+            queues = parse_stack(from_date(period), tag, j)
             if len(queues.json()['items']) > 0:
                 for i in queues.json()['items']:
-                    print(f'Дата вопроса {time.strftime("%d-%m-%Y %H:%M:%S", time.localtime(i["creation_date"]))} '
-                          f'Вопрос: {i["title"]}')
+                    all_questions.append(f'Вопрос: {i["title"]}')
                 j += 1
             else:
                 break
         except KeyError:
             break
+    for j in all_questions:
+        print(j)
+    print(len(all_questions))
 
 
 result()
