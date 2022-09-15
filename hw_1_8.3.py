@@ -3,9 +3,14 @@ import datetime
 
 
 def parse_stack(fromdate, tagged, page):
-    url = f'https://api.stackexchange.com/2.3/questions?page={page}&fromdate={fromdate}&order=desc&pagesize=100&' \
-          f'sort=creation&tagged={tagged}&site=stackoverflow'
-    response = requests.get(url)
+    parametrs = {
+        'page': page,
+        'fromdate': fromdate,
+        'pagesize': 100,
+        'tagged': tagged,
+    }
+    url = f'https://api.stackexchange.com/2.3/questions?order=desc&sort=creation&site=stackoverflow'
+    response = requests.get(url, parametrs)
     return response
 
 
@@ -34,7 +39,7 @@ def result():
             break
     for j in all_questions:
         print(j)
-    print(len(all_questions))
+    # print(len(all_questions))
 
 
 result()
