@@ -39,7 +39,6 @@ def result():
             break
     for j in all_questions:
         print(j)
-    # print(len(all_questions))
 
 
 result()
